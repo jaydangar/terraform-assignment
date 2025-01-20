@@ -1,3 +1,3 @@
-resource "aws_vpc" "infra-vpc" {
+resource "aws_vpc" "main_vpc" {
   cidr_block = var.cidr_block
 }
