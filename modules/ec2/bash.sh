@@ -1,12 +1,12 @@
 #!/bin/bash
 
-# Install Apache HTTP Server
+# Install nginx
 sudo yum update -y
-sudo yum install httpd -y
+sudo yum install nginx -y
 
-# Start Apache and enable it on boot
-sudo systemctl start httpd
-sudo systemctl enable httpd
+# Start nginx and enable it on boot
+sudo systemctl start nginx
+sudo systemctl enable nginx
 
 # Create a "Hello, World" page
 echo "Hello, World!!!" | sudo tee /var/www/html/index.html
