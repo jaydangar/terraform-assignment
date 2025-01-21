@@ -17,3 +17,13 @@ variable "vpc_id" {
   description = "Provides VPC id for setting up the server"
   type = string
 }
+
+variable "elb_sg_id" {
+  description = "Provides Elastic Load Balancer Security Group id for setting up the server"
+  type = string
+}
+
+variable "target_group_arn" {
+  description = "Provides Target Group ARN for setting up the server"
+  type = string
+}
