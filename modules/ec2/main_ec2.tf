@@ -10,6 +10,7 @@ locals {
     https_port = 443
 
     vpc_id = var.vpc_id
+    subnet_id = var.subnet_id
 }
 
 resource "aws_instance" "ec2-instance" {
@@ -20,7 +21,8 @@ resource "aws_instance" "ec2-instance" {
     "Environment" = local.environment_value
   }
   vpc_security_group_ids = [ aws_security_group.ec2_ingress_egress_rules.id ]
-  subnet_id = var.subnet_id
+  subnet_id = local.subnet_id
+  associate_public_ip_address = true
 } 
 
 resource "aws_security_group" "ec2_ingress_egress_rules" {
@@ -28,8 +30,8 @@ resource "aws_security_group" "ec2_ingress_egress_rules" {
 
   # TODO: 22 allowlisting is temporary and needs to be removed after the final infrastructure testing
   ingress {
-    to_port = local.http_port
-    from_port = local.http_port
+    to_port = local.ssh_port
+    from_port = local.ssh_port
     protocol = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }   

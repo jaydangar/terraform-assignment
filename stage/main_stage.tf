@@ -4,7 +4,7 @@ provider "aws" {
 
 module "private_ec2_instances" {
   source         = "../modules/ec2/"
-  for_each       = module.subnets.public_subnets
+  for_each       = module.subnets.private_subnets
   is_prod        = false
   user_data_path = "../modules/ec2/bash.sh"
   subnet_id      = each.value
