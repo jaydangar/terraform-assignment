@@ -20,3 +20,16 @@ module "subnets" {
   source = "../modules/subnets"
   vpc_id = module.vpc.vpc_id
 }
+
+module "route_table" {
+  for_each = module.subnets.public_subnets
+  source = "../modules/route_table"
+  vpc_id = module.vpc.vpc_id
+  internet_gateway_id = module.igw.igw_id
+  subnet_id = each.value
+}
+
+module "igw" {
+  source = "../modules/igw"
+  vpc_id = module.vpc.vpc_id
+}
